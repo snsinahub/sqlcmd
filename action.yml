@@ -29,7 +29,7 @@ runs:
         echo "sqlcmd scripts"
         # echo "Invoke-Sqlcmd -ServerInstance ${{ inputs.server_name }} -Database ${{ inputs.db_name }} -InputFile ${{ inputs.sql_path }}"
         # Invoke-Sqlcmd -ServerInstance DESKTOP-B3RJ2NG\SQLENT -Database "${{ inputs.db_name }}" -InputFile "${{ inputs.sql_path }}"
-        Invoke-Sqlcmd -ServerInstance DESKTOP-B3RJ2NG\SQLENT -Database SSISDB -InputFile 'C:\Users\Siavash Namvar\source\sql-server-samples\samples\databases\wide-world-importers\wwi-ssdt\wwi-ssdt\PostDeploymentScripts\sample.sql'
+        Invoke-Sqlcmd -ServerInstance 'DESKTOP-B3RJ2NG\SQLENT' -Database SSISDB -InputFile 'C:\Users\Siavash Namvar\source\sql-server-samples\samples\databases\wide-world-importers\wwi-ssdt\wwi-ssdt\PostDeploymentScripts\sample.sql'
       id: sqlcmd-script          
       shell: powershell
       # if: ${{ inputs.sqlcmd_action == 'script' }}

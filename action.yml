@@ -13,7 +13,6 @@ inputs:
   sqlcmd_variables:  
     description: 'file_extenstion'
     required: false
-    default: '*.sln'
   sqlcmd_action:  
     description: 'sqlcmd_action'
     required: true

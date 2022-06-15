@@ -25,10 +25,7 @@ runs:
   using: "composite"
   steps:
     - run: |
-        # ${{ inputs.sql_path }}
-        # ${{ inputs.server_name }}
-        # ${{ inputs.sqlcmd_variables }}
-        # ${{ inputs.db_name }}
+        
         echo "sqlcmd scripts"
         echo "Invoke-Sqlcmd -ServerInstance ${{ inputs.server_name }} -Database ${{ inputs.db_name }} -InputFile ${{ inputs.sql_path }}"
         Invoke-Sqlcmd -ServerInstance "${{ inputs.server_name }}" -Database "${{ inputs.db_name }}" -InputFile "${{ inputs.sql_path }}"

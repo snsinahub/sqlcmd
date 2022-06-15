@@ -31,7 +31,7 @@ runs:
         Invoke-Sqlcmd -ServerInstance "${{ inputs.server_name }}" -Database "${{ inputs.db_name }}" -InputFile "${{ inputs.sql_path }}"
       id: sqlcmd-script          
       shell: powershell
-      if: ${{ inputs.sqlcmd_action == 'script' }}
+      # if: ${{ inputs.sqlcmd_action == 'script' }}
     
     
     

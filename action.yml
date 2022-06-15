@@ -1,0 +1,41 @@
+name: 'action yml'
+description: 'dotnet restore'
+inputs:
+  sql_path:  
+    description: 'sql_path'
+    required: false
+  server_name:  
+    description: 'Server Name or IP address'
+    required: true
+  db_name:  
+    description: 'db name'
+    required: true  
+  sqlcmd_variables:  
+    description: 'file_extenstion'
+    required: false
+    default: '*.sln'
+  sqlcmd_action:  
+    description: 'sqlcmd_action'
+    required: true
+outputs:
+  random-number:
+    description: "Random number"
+    value: ${{ steps.random-number-generator.outputs.random-number }}
+runs:
+  using: "composite"
+  steps:
+    - run: |
+        # ${{ inputs.sql_path }}
+        # ${{ inputs.server_name }}
+        # ${{ inputs.sqlcmd_variables }}
+        # ${{ inputs.db_name }}
+        Invoke-Sqlcmd -ServerInstance "${{ inputs.server_name }}" -Database "${{ inputs.db_name }}" -InputFile "${{ inputs.sql_path }}"
+      id: sqlcmd-script          
+      shell: powershell
+      if: ${{ inputs.sqlcmd_action == 'script' }}
+    
+    
+    
+
+
+      

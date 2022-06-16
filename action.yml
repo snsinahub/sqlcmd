@@ -43,7 +43,7 @@ runs:
         }
 
         $command = [Scriptblock]::Create($PS)
-        echo $command
+        echo "COMMAND --> $command"
         Invoke-Command -ScriptBlock $command
 
 

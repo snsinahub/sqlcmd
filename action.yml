@@ -39,7 +39,7 @@ runs:
         echo "VARS --> '${{ inputs.sqlcmd_variables }}'"
         echo "---"
         echo "TO ---> '${{ inputs.query_timeout }}'"
-        if ( ${{ inputs.sqlcmd_variables }}) ) {
+        if ( ${{ inputs.sqlcmd_variables }} ) {
           $PS += " -Variable ${{ inputs.sqlcmd_variables }}"
         }
 

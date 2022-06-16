@@ -38,11 +38,11 @@ runs:
 
         echo "VARS --> $VARS"
         echo "TO ---> $TO"
-        if ( -Not [string]::IsNullOrEmpty($VARS) ) {
+        if ( -Not [string]::IsNullOrEmpty("${{ inputs.sqlcmd_variables }}") ) {
           $PS += " -Variable ${{ inputs.sqlcmd_variables }}"
         }
 
-        if ( -Not [string]::IsNullOrEmpty($TO) ) {
+        if ( -Not [string]::IsNullOrEmpty(${{ inputs.query_timeout }}) ) {
           $PS += " -QueryTimeOut ${{ inputs.query_timeout }}"
         }
 

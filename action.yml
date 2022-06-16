@@ -32,7 +32,7 @@ runs:
         echo "sqlcmd scripts"        
         
         ## create invoke command
-        $PS = "Invoke-Sqlcmd -ServerInstance ${{ inputs.server_name }} -Database ${{ inputs.db_name }} -InputFile '${{ inputs.sql_path }}'"
+        $PS = "Invoke-Sqlcmd -ServerInstance ${{ inputs.server_name }} -Database ${{ inputs.db_name }} -InputFile '${{ inputs.sql_path }}' -OutputSqlErrors 1 -ErrorAction Stop "
 
         ## set sqlcmd variables
         [string]$variables = "${{ inputs.sqlcmd_variables }}"

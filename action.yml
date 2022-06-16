@@ -61,7 +61,7 @@ runs:
 
       id: sqlcmd-script          
       shell: powershell
-      # if: ${{ inputs.sqlcmd_action == 'script' }}
+      if: ${{ inputs.sqlcmd_action == 'script' }}
     
     
     

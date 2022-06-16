@@ -33,11 +33,11 @@ runs:
         echo "Invoke-Sqlcmd -ServerInstance ${{ inputs.server_name }} -Database ${{ inputs.db_name }} -InputFile '${{ inputs.sql_path }}'"
         # Invoke-Sqlcmd -ServerInstance "${{ inputs.server_name }}" -Database "${{ inputs.db_name }}" -InputFile "${{ inputs.sql_path }}"
         $PS = "Invoke-Sqlcmd -ServerInstance ${{ inputs.server_name }} -Database ${{ inputs.db_name }} -InputFile ${{ inputs.sql_path }}"
-        if (${{ inputs.sqlcmd_variables }} -ne "") {
+        if (${{ inputs.sqlcmd_variables }} != "") {
           $PS += " -Variable ${{ inputs.sqlcmd_variables }}"
         }
 
-        if (${{ inputs.query_timeout }} -ne "") {
+        if (${{ inputs.query_timeout }} != "") {
           $PS += " -QueryTimeOut ${{ inputs.query_timeout }}"
         }
 

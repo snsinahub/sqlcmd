@@ -47,7 +47,7 @@ runs:
           echo "variable empty"
         }
 
-        if ( $TO -ne '' ) {
+        if ( "'${{ inputs.query_timeout }}'" -ne '' ) {
           $PS += " -QueryTimeOut '${{ inputs.query_timeout }}'"
         }
         else

@@ -1,6 +1,6 @@
 # sqlcmd
 
-SQLCMD is an action runs a script containing the languages and commands supported by SQL Server SQLCMD.
+snsinahub/sqlcmd is an action script containing the languages and commands supported by SQL Server SQLCMD.
 
 ## Supported methods
 - **Authentication**: windows authentication

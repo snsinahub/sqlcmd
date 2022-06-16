@@ -24,7 +24,9 @@ runs:
   using: "composite"
   steps:
     - run: |
-        ./run_script.ps1 -server "${{ inputs.server_name }}" -dbName "${{ inputs.db_name }}" -InputFile "${{ inputs.sql_path }}"
+        # ./run_script.ps1 -server "${{ inputs.server_name }}" -dbName "${{ inputs.db_name }}" -InputFile "${{ inputs.sql_path }}"
+        pwd
+        ls
         echo "sqlcmd scripts"
         echo "Invoke-Sqlcmd -ServerInstance ${{ inputs.server_name }} -Database ${{ inputs.db_name }} -InputFile '${{ inputs.sql_path }}'"
         Invoke-Sqlcmd -ServerInstance "${{ inputs.server_name }}" -Database "${{ inputs.db_name }}" -InputFile "${{ inputs.sql_path }}"

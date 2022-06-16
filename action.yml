@@ -30,18 +30,14 @@ runs:
   steps:
     - run: |       
         echo "sqlcmd scripts"        
-        echo "Invoke-Sqlcmd -ServerInstance ${{ inputs.server_name }} -Database ${{ inputs.db_name }} -InputFile '${{ inputs.sql_path }}'"
-        # Invoke-Sqlcmd -ServerInstance "${{ inputs.server_name }}" -Database "${{ inputs.db_name }}" -InputFile "${{ inputs.sql_path }}"
+        
+        ## create invoke command
         $PS = "Invoke-Sqlcmd -ServerInstance ${{ inputs.server_name }} -Database ${{ inputs.db_name }} -InputFile '${{ inputs.sql_path }}'"
         [string]$variables = "${{ inputs.sqlcmd_variables }}"
         [string[]]$VARS = @()
-        $VARS = $variables -split ";" | ForEach-Object { $_.trim() }
-        # | ConvertTo-Csv -Delimiter ','
+        $VARS = $variables -split ";" | ForEach-Object { $_.trim() }        
         $TO = '${{ inputs.query_timeout }}'
 
-        # echo "VARS --> " ${{ inputs.sqlcmd_variables }}
-        # echo "---"
-        # echo "TO ---> '${{ inputs.query_timeout }}'"
         if ( $VARS -ne '' ) {
           $PS += " -Variable $VARS"
         }

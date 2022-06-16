@@ -35,7 +35,7 @@ runs:
         $PS = "Invoke-Sqlcmd -ServerInstance ${{ inputs.server_name }} -Database ${{ inputs.db_name }} -InputFile ${{ inputs.sql_path }}"
         
         if ( ${{ inputs.sqlcmd_variables }} ) {
-          $PS += '' -Variable ' + "${{ inputs.sqlcmd_variables }}"
+          $PS += ' -Variable ' + "${{ inputs.sqlcmd_variables }}"
         }
 
         if ( ${{ inputs.query_timeout }} ) {
@@ -43,7 +43,7 @@ runs:
         }
 
         $command = [Scriptblock]::Create($PS)
-
+        echo $command
         Invoke-Command -ScriptBlock $command
 
 

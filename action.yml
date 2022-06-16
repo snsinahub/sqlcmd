@@ -39,11 +39,11 @@ runs:
         echo "VARS --> '${{ inputs.sqlcmd_variables }}'"
         echo "---"
         echo "TO ---> '${{ inputs.query_timeout }}'"
-        if ( $VARS -ne "" ) {
+        if ( $VARS -ne $null ) {
           $PS += " -Variable ${{ inputs.sqlcmd_variables }}"
         }
 
-        if ( $TO -ne "" ) {
+        if ( $TO -ne $null ) {
           $PS += " -QueryTimeOut ${{ inputs.query_timeout }}"
         }
 

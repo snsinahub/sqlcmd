@@ -33,7 +33,7 @@ runs:
         echo "Invoke-Sqlcmd -ServerInstance ${{ inputs.server_name }} -Database ${{ inputs.db_name }} -InputFile '${{ inputs.sql_path }}'"
         # Invoke-Sqlcmd -ServerInstance "${{ inputs.server_name }}" -Database "${{ inputs.db_name }}" -InputFile "${{ inputs.sql_path }}"
         $PS = "Invoke-Sqlcmd -ServerInstance ${{ inputs.server_name }} -Database ${{ inputs.db_name }} -InputFile '${{ inputs.sql_path }}'"
-        $VARS = "'${{ inputs.sqlcmd_variables }}'"
+        $VARS = "'${{ inputs.sqlcmd_variables }}'" | ConvertTo-Csv -Delimiter ','
         $TO = '${{ inputs.query_timeout }}'
 
         # echo "VARS --> " ${{ inputs.sqlcmd_variables }}

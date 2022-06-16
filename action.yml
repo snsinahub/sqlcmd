@@ -33,9 +33,13 @@ runs:
         
         ## create invoke command
         $PS = "Invoke-Sqlcmd -ServerInstance ${{ inputs.server_name }} -Database ${{ inputs.db_name }} -InputFile '${{ inputs.sql_path }}'"
+
+        ## set sqlcmd variables
         [string]$variables = "${{ inputs.sqlcmd_variables }}"
         [string[]]$VARS = @()
         $VARS = $variables -split ";" | ForEach-Object { $_.trim() }        
+
+        ## set timeout time in seconds
         $TO = '${{ inputs.query_timeout }}'
 
         if ( $VARS -ne '' ) {
@@ -54,6 +58,7 @@ runs:
           echo "TO empty"
         }
 
+        ## Generate command
         $command = [Scriptblock]::Create($PS)
         echo "COMMAND --> $command"
         Invoke-Command -ScriptBlock $command

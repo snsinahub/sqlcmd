@@ -34,7 +34,7 @@ runs:
         # Invoke-Sqlcmd -ServerInstance "${{ inputs.server_name }}" -Database "${{ inputs.db_name }}" -InputFile "${{ inputs.sql_path }}"
         $PS = "Invoke-Sqlcmd -ServerInstance ${{ inputs.server_name }} -Database ${{ inputs.db_name }} -InputFile '${{ inputs.sql_path }}'"
 
-        [string[]]$VARS = ${{ inputs.sqlcmd_variables }} -split "," | ForEach-Object { $_.trim() }
+        [string[]]$VARS = ${{ inputs.sqlcmd_variables }} | ConvertTo-Csv -Delimiter ','
         # | ConvertTo-Csv -Delimiter ','
         $TO = '${{ inputs.query_timeout }}'
 

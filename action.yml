@@ -33,7 +33,7 @@ runs:
         echo "Invoke-Sqlcmd -ServerInstance ${{ inputs.server_name }} -Database ${{ inputs.db_name }} -InputFile '${{ inputs.sql_path }}'"
         # Invoke-Sqlcmd -ServerInstance "${{ inputs.server_name }}" -Database "${{ inputs.db_name }}" -InputFile "${{ inputs.sql_path }}"
         $PS = "Invoke-Sqlcmd -ServerInstance ${{ inputs.server_name }} -Database ${{ inputs.db_name }} -InputFile '${{ inputs.sql_path }}'"
-        [string]$variables = ${{ inputs.sqlcmd_variables }}
+        [string]$variables = "${{ inputs.sqlcmd_variables }}"
         [string[]]$VARS = @()
         $VARS = $variables | ConvertTo-Csv -Delimiter ';'
         # | ConvertTo-Csv -Delimiter ','

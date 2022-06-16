@@ -20,7 +20,7 @@ snsinahub/sqlcmd is an action that runs script containing the languages and comm
     # Absolute path to sql file
     # example:
     #   sql_path: 'C:\scripts\run.sql'
-    sql_path: "C:\scripts\run.sql" 
+    sql_path: 'C:\scripts\run.sql' 
     
     # Name of sql server URL or Machine name
     # example:
@@ -51,7 +51,7 @@ snsinahub/sqlcmd is an action that runs script containing the languages and comm
   uses : snsinahub/sqlcmd@v1.0.0
   with:
     sqlcmd_action: "script"
-    sql_path: "C:\scripts\run.sql" 
+    sql_path: 'C:\scripts\run.sql' 
     server_name: "sql.snsinahub.com"
     sqlcmd_variables: env='dev',account='dev-account'
     query_timeout: 6000

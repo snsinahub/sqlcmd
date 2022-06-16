@@ -35,11 +35,11 @@ runs:
         $PS = "Invoke-Sqlcmd -ServerInstance ${{ inputs.server_name }} -Database ${{ inputs.db_name }} -InputFile ${{ inputs.sql_path }}"
         
         if ( ![string]::IsNullOrEmpty("${{ inputs.sqlcmd_variables }}") ) {
-          $PS += ' -Variable ' + "${{ inputs.sqlcmd_variables }}"
+          $PS += " -Variable ${{ inputs.sqlcmd_variables }}"
         }
 
         if ( ![string]::IsNullOrEmpty("${{ inputs.query_timeout }}") ) {
-          $PS += ' -QueryTimeOut' + ${{ inputs.query_timeout }}"
+          $PS += " -QueryTimeOut ${{ inputs.query_timeout }}"
         }
 
         $command = [Scriptblock]::Create($PS)

@@ -39,12 +39,20 @@ runs:
         echo "VARS --> '${{ inputs.sqlcmd_variables }}'"
         echo "---"
         echo "TO ---> '${{ inputs.query_timeout }}'"
-        if ( $VARS -ne $null ) {
+        if ( $VARS -ne '' ) {
           $PS += " -Variable ${{ inputs.sqlcmd_variables }}"
         }
+        else
+        {
+          echo "variable empty"
+        }
 
-        if ( $TO -ne $null ) {
+        if ( $TO -ne '' ) {
           $PS += " -QueryTimeOut ${{ inputs.query_timeout }}"
+        }
+        else
+        {
+          echo "TO empty"
         }
 
         $command = [Scriptblock]::Create($PS)

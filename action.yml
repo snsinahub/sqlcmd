@@ -36,8 +36,9 @@ runs:
         $VARS = "${{ inputs.sqlcmd_variables }}"
         $TO = ${{ inputs.query_timeout }}
 
-        echo "VARS --> $VARS"
-        echo "TO ---> $TO"
+        echo "VARS --> '${{ inputs.sqlcmd_variables }}'"
+        echo "---"
+        echo "TO ---> '${{ inputs.query_timeout }}'"
         if ( -Not [string]::IsNullOrEmpty("${{ inputs.sqlcmd_variables }}") ) {
           $PS += " -Variable ${{ inputs.sqlcmd_variables }}"
         }

@@ -11,9 +11,13 @@ inputs:
     description: 'db name'
     required: true  
   sqlcmd_variables:  
-    description: 'file_extenstion'
+    description: 'sqlcmd_variables'
     required: false
     default: ""
+  sqlcmd_variables_type:  
+    description: 'sqlcmd_variables_type'
+    required: false
+    default: "inline"
   query_timeout:  
     description: 'query_timeout'
     required: false
@@ -47,10 +51,20 @@ runs:
         $PS = "Invoke-Sqlcmd -ServerInstance ${{ inputs.server_name }} -Database ${{ inputs.db_name }} -InputFile '${{ inputs.sql_path }}' -OutputSqlErrors 1 -ErrorAction Stop "
 
         ## set sqlcmd variables        
-        [string]$variables = ${{ inputs.sqlcmd_variables }}
-        [string]$VARS = ''        
-        $VARS = $variables.split(" ")
-        $varArray = $(${{ inputs.sqlcmd_variables }})
+        if( ${{ inputs.sqlcmd_variables_type }} == 'inline' )
+        {
+          [string]$variables = "${{ inputs.sqlcmd_variables }}"
+          [string]$VARS = ''        
+          $VARS = $variables.split(" ")
+          $varArray = $VARS
+        }
+        else {
+          [string]$variables = ${{ inputs.sqlcmd_variables }}
+          [string]$VARS = ''        
+          $VARS = $variables.split(" ")
+          $varArray = $(${{ inputs.sqlcmd_variables }})
+        }
+        
         
         
 

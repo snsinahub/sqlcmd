@@ -50,7 +50,7 @@ runs:
         [string]$variables = ${{ inputs.sqlcmd_variables }}
         # [string[]]$VARS = @()
         [string]$VARS = ''
-        # $VARS = $variables -split ";" | ForEach-Object { $_.trim() }    
+        $VARS = $variables -split ";" | ForEach-Object { $_.trim() }    
         $VARS = $variables
         echo $variables
 
@@ -60,7 +60,7 @@ runs:
 
         if ( $VARS -ne '' ) {
           $PS += " -Variable " 
-          $PS += $variables
+          $PS += ${{ inputs.sqlcmd_variables }}
         }
         else
         {

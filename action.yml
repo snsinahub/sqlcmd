@@ -17,7 +17,7 @@ inputs:
   sqlcmd_variables_type:  
     description: 'sqlcmd_variables_type'
     required: false
-    default: "inline"
+    default: ""
   query_timeout:  
     description: 'query_timeout'
     required: false

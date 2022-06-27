@@ -46,17 +46,9 @@ runs:
         ## create invoke command
         $PS = "Invoke-Sqlcmd -ServerInstance ${{ inputs.server_name }} -Database ${{ inputs.db_name }} -InputFile '${{ inputs.sql_path }}' -OutputSqlErrors 1 -ErrorAction Stop "
 
-        ## set sqlcmd variables     
-
-        try {
-          [string]$variables = ${{ inputs.sqlcmd_variables }}
-          $varArray = $(${{ inputs.sqlcmd_variables }})
-        }
-        catch {
-          [string]$variables = "${{ inputs.sqlcmd_variables }}"
-          $varArray = $("${{ inputs.sqlcmd_variables }}".split(" "))
-        }
-        
+        ## set sqlcmd variables             
+        [string]$variables = ${{ inputs.sqlcmd_variables }}
+        $varArray = $(${{ inputs.sqlcmd_variables }})
         [string]$VARS = ''        
         $VARS = $variables.split(" ")
         

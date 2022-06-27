@@ -117,7 +117,7 @@ runs:
         $PS = "Invoke-Sqlcmd -ServerInstance ${{ inputs.server_name }} -Database ${{ inputs.db_name }} -InputFile '${{ inputs.sql_path }}' -OutputSqlErrors 1 -ErrorAction Stop "
 
         ## set sqlcmd variables             
-        $variables = "${{ inputs.sqlcmd_variables }}"
+        $variables = "${{ inputs.sqlcmd_variables }}" | convert-string
         $varArray = $($variables.split(" "))
         [string]$VARS = ''        
         $VARS = $variables.split(" ")                      

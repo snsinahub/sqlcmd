@@ -49,6 +49,7 @@ runs:
         ## set sqlcmd variables
         [string]$variables = "${{ inputs.sqlcmd_variables }}"
         # [string[]]$VARS = @()
+        [string]$VARS = ''
         # $VARS = $variables -split ";" | ForEach-Object { $_.trim() }    
         $VARS = $variables
 

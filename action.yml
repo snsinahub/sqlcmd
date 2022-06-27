@@ -56,7 +56,8 @@ runs:
         echo $variables
         
         foreach ($item in $varArray) {
-          echo $varArray
+          echo '-----'
+          echo $item
         }
 
 

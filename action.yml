@@ -49,7 +49,7 @@ runs:
         ## set sqlcmd variables
         # [string]$variables =         
         [string]$VARS = ''        
-        $VARS = ${{ inputs.sqlcmd_variables }}.split(",")
+        $VARS = ${{ inputs.sqlcmd_variables }}.split(" ")
         $varArray = $(${{ inputs.sqlcmd_variables }})
         
         

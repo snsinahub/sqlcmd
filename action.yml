@@ -29,7 +29,19 @@ runs:
   using: "composite"
   steps:
     - run: |       
-        echo "sqlcmd scripts"        
+        echo "sqlcmd scripts"     
+        
+        if (!(Get-Module -ListAvailable -Name SqlServer)) 
+        {            
+            Write-Output "Installing PowerShell module $Name for current user"
+            Install-PackageProvider -Name NuGet -Force -Scope CurrentUser;
+            Install-Module -Name SqlServer -Force -AllowClobber -Scope CurrentUser -Repository PSGallery -SkipPublisherCheck;
+        }
+
+        if (-not (Get-Module -Name SqlServer)) 
+        {            
+            Import-Module -Name SqlServer -DisableNameChecking;
+        }   
         
         ## create invoke command
         $PS = "Invoke-Sqlcmd -ServerInstance ${{ inputs.server_name }} -Database ${{ inputs.db_name }} -InputFile '${{ inputs.sql_path }}' -OutputSqlErrors 1 -ErrorAction Stop "

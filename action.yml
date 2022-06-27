@@ -48,8 +48,10 @@ runs:
 
         ## set sqlcmd variables
         [string]$variables = "${{ inputs.sqlcmd_variables }}"
-        [string[]]$VARS = @()
-        # $VARS = $variables -split ";" | ForEach-Object { $_.trim() }        
+        # [string[]]$VARS = @()
+        # $VARS = $variables -split ";" | ForEach-Object { $_.trim() }    
+        $VARS = $variables
+
 
         ## set timeout time in seconds
         $TO = '${{ inputs.query_timeout }}'

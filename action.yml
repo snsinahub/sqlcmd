@@ -14,10 +14,6 @@ inputs:
     description: 'sqlcmd_variables'
     required: false
     default: ""
-  sqlcmd_variables_type:  
-    description: 'sqlcmd_variables_type'
-    required: false
-    default: ""
   query_timeout:  
     description: 'query_timeout'
     required: false
@@ -51,11 +47,12 @@ runs:
         $PS = "Invoke-Sqlcmd -ServerInstance ${{ inputs.server_name }} -Database ${{ inputs.db_name }} -InputFile '${{ inputs.sql_path }}' -OutputSqlErrors 1 -ErrorAction Stop "
 
         ## set sqlcmd variables     
-        [string]$type = "${{ inputs.sqlcmd_variables_type }}"
+
+        
         [string]$variables = ${{ inputs.sqlcmd_variables }}
         [string]$VARS = ''        
         $VARS = $variables.split(" ")
-        $varArray = $(${{ inputs.sqlcmd_variables }})
+        $varArray = $($variables)
         
         
         

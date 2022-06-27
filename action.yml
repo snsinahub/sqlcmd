@@ -161,7 +161,7 @@ runs:
         Invoke-Command -ScriptBlock $command
 
 
-      id: sqlcmd-script          
+      id: sqlcmd-script-inline          
       shell: powershell
       if: ${{ inputs.sqlcmd_action == 'script' && inputs.sqlcmd_action_type == 'inline' }}
     

@@ -28,11 +28,18 @@ snsinahub/sqlcmd is an action that runs script containing the languages and comm
     server_name: "sql.snsinahub.com"
     
     # Pass parameters in format of comma separated values
+    # IMPORTANT: if you need to put value of each variable inside quotes please follow      #   
+    #   sqlcmd_variables: env='dev' account='dev-account'
+    #   input_type: inline
+    sqlcmd_variables: env='dev' account='dev-account'
+
+
+    # Pass parameters in format of comma separated values
     # IMPORTANT: if you need to put value of each variable inside quotes USE SINGLE QUOTES ONLY 
     # DOUBLE QUOTES ARE NOT ACCEPTED
     # example:
-    #   sqlcmd_variables: env='dev',account='dev-account'
-    sqlcmd_variables: env='dev',account='dev-account'
+    #   input_type: inline
+    input_type: inline
     
     # Query Timeout
     # example:
@@ -53,7 +60,8 @@ snsinahub/sqlcmd is an action that runs script containing the languages and comm
     sqlcmd_action: "script"
     sql_path: 'C:\scripts\run.sql' 
     server_name: "sql.snsinahub.com"
-    sqlcmd_variables: env='dev',account='dev-account'
+    sqlcmd_variables: env='dev' account='dev-account'
+    input_type: inline
     query_timeout: 6000
     db_name: SSISDB
 ```

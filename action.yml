@@ -65,7 +65,7 @@ runs:
           $PS += " -Variable "           
           foreach ($item in $varArray) {            
             echo 
-            $PS += '"$item"'
+            $PS += ' "' + $item + '" '
           }
         }
         else

@@ -63,8 +63,7 @@ runs:
 
         if ( $VARS -ne '' ) {
           $PS += " -Variable "           
-          foreach ($item in $varArray) {            
-            echo 
+          foreach ($item in $varArray) {                        
             $PS += ' "' + $item + '" '
           }
         }

@@ -51,9 +51,9 @@ runs:
         $PS = "Invoke-Sqlcmd -ServerInstance ${{ inputs.server_name }} -Database ${{ inputs.db_name }} -InputFile '${{ inputs.sql_path }}' -OutputSqlErrors 1 -ErrorAction Stop "
 
         ## set sqlcmd variables     
-        $type = "${{ inputs.sqlcmd_variables_type }}"
+        [string]$type = "${{ inputs.sqlcmd_variables_type }}"
         echo "type $type"
-        if( $type == 'inline' )
+        if( $type -eq "inline" )
         {
           echo "inline input"
           [string]$variables = "${{ inputs.sqlcmd_variables }}"

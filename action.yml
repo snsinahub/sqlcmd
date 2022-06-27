@@ -14,7 +14,7 @@ inputs:
     description: 'sqlcmd_variables'
     required: false
     default: ""
-  sqlcmd_variables_type:  
+  input_type:  
     description: 'sqlcmd_variables_type'
     required: false
     default: ""
@@ -97,7 +97,7 @@ runs:
 
       id: sqlcmd-script          
       shell: powershell
-      if: ${{ inputs.sqlcmd_action == 'script' && inputs.sqlcmd_action_type != 'inline' }}
+      if: ${{ inputs.sqlcmd_action == 'script' && inputs.input_type != 'inline' }}
     - run: |       
         echo "sqlcmd scripts inline"     
         
@@ -163,7 +163,7 @@ runs:
 
       id: sqlcmd-script-inline          
       shell: powershell
-      if: ${{ inputs.sqlcmd_action == 'script' && inputs.sqlcmd_action_type == 'inline' }}
+      if: ${{ inputs.sqlcmd_action == 'script' && inputs.input_type == 'inline' }}
     
     
 

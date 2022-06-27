@@ -14,6 +14,10 @@ inputs:
     description: 'sqlcmd_variables'
     required: false
     default: ""
+  sqlcmd_variables_type:  
+    description: 'sqlcmd_variables_type'
+    required: false
+    default: "inline"
   query_timeout:  
     description: 'query_timeout'
     required: false
@@ -50,13 +54,8 @@ runs:
         [string]$variables = ${{ inputs.sqlcmd_variables }}
         $varArray = $(${{ inputs.sqlcmd_variables }})
         [string]$VARS = ''        
-        $VARS = $variables.split(" ")
+        $VARS = $variables.split(" ")                      
         
-        
-        
-        
-        
-
 
         ## set timeout time in seconds
         $TO = '${{ inputs.query_timeout }}'
@@ -98,8 +97,73 @@ runs:
 
       id: sqlcmd-script          
       shell: powershell
-      if: ${{ inputs.sqlcmd_action == 'script' }}
-    
+      if: ${{ inputs.sqlcmd_action == 'script' && inputs.sqlcmd_action_type != 'inline' }}
+    - run: |       
+        echo "sqlcmd scripts"     
+        
+        if (!(Get-Module -ListAvailable -Name SqlServer)) 
+        {            
+            Write-Output "Installing PowerShell module $Name for current user"
+            Install-PackageProvider -Name NuGet -Force -Scope CurrentUser;
+            Install-Module -Name SqlServer -Force -AllowClobber -Scope CurrentUser -Repository PSGallery -SkipPublisherCheck;
+        }
+
+        if (-not (Get-Module -Name SqlServer)) 
+        {            
+            Import-Module -Name SqlServer -DisableNameChecking;
+        }   
+        
+        ## create invoke command
+        $PS = "Invoke-Sqlcmd -ServerInstance ${{ inputs.server_name }} -Database ${{ inputs.db_name }} -InputFile '${{ inputs.sql_path }}' -OutputSqlErrors 1 -ErrorAction Stop "
+
+        ## set sqlcmd variables             
+        [string]$variables = ${{ inputs.sqlcmd_variables }}
+        $varArray = $(${{ inputs.sqlcmd_variables }})
+        [string]$VARS = ''        
+        $VARS = $variables.split(" ")                      
+        
+
+        ## set timeout time in seconds
+        $TO = '${{ inputs.query_timeout }}'
+
+        $i=0
+        if ( $VARS -ne '' ) {
+          $PS += " -Variable "           
+          foreach ($item in $varArray) {      
+            if( $i -ne 0 )
+            {
+              $PS += ' ,"' + $item + '" '
+            }
+            else 
+            {
+              $PS += ' "' + $item.replace('"', "'") + '" '
+              $i++;
+            }                  
+            
+          }
+        }
+        else
+        {
+          echo "variable empty"
+        }
+
+        if ( $TO -ne '' ) {
+          $PS += " -QueryTimeOut '${{ inputs.query_timeout }}'"
+        }
+        else
+        {
+          echo "TO empty"
+        }
+
+        ## Generate command
+        $command = [Scriptblock]::Create($PS)
+        echo "COMMAND --> $command"
+        Invoke-Command -ScriptBlock $command
+
+
+      id: sqlcmd-script          
+      shell: powershell
+      if: ${{ inputs.sqlcmd_action == 'script' && inputs.sqlcmd_action_type == 'inline' }}
     
     
 

@@ -55,12 +55,14 @@ runs:
         echo "type $type"
         if( $type == 'inline' )
         {
+          echo "inline input"
           [string]$variables = "${{ inputs.sqlcmd_variables }}"
           [string]$VARS = ''        
           $VARS = $variables.split(" ")
           $varArray = $VARS
         }
         else {
+          echo "external input"
           [string]$variables = ${{ inputs.sqlcmd_variables }}
           [string]$VARS = ''        
           $VARS = $variables.split(" ")

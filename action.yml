@@ -99,7 +99,7 @@ runs:
       shell: powershell
       if: ${{ inputs.sqlcmd_action == 'script' && inputs.sqlcmd_action_type != 'inline' }}
     - run: |       
-        echo "sqlcmd scripts"     
+        echo "sqlcmd scripts inline"     
         
         if (!(Get-Module -ListAvailable -Name SqlServer)) 
         {            
@@ -117,8 +117,8 @@ runs:
         $PS = "Invoke-Sqlcmd -ServerInstance ${{ inputs.server_name }} -Database ${{ inputs.db_name }} -InputFile '${{ inputs.sql_path }}' -OutputSqlErrors 1 -ErrorAction Stop "
 
         ## set sqlcmd variables             
-        [string]$variables = ${{ inputs.sqlcmd_variables }}
-        $varArray = $(${{ inputs.sqlcmd_variables }})
+        [string]$variables = "${{ inputs.sqlcmd_variables }}".replace('"',"'")
+        $varArray = $($variables.split(" "))
         [string]$VARS = ''        
         $VARS = $variables.split(" ")                      
         

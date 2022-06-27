@@ -48,11 +48,18 @@ runs:
 
         ## set sqlcmd variables     
 
+        try {
+          [string]$variables = ${{ inputs.sqlcmd_variables }}
+          $varArray = $(${{ inputs.sqlcmd_variables }})
+        }
+        catch {
+          [string]$variables = "${{ inputs.sqlcmd_variables }}"
+          $varArray = $("${{ inputs.sqlcmd_variables }}".split(" "))
+        }
         
-        [string]$variables = ${{ inputs.sqlcmd_variables }}
         [string]$VARS = ''        
         $VARS = $variables.split(" ")
-        $varArray = $($variables)
+        
         
         
         

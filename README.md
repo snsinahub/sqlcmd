@@ -7,7 +7,7 @@ snsinahub/sqlcmd is an action that runs script containing the languages and comm
 
 ## Parameters
 ```YAML
-- uses: snsinahub/dotnet-cli@v1.0.0
+- uses: snsinahub/dotnet-cli@v2.0.0
   with:   
     
     # Type of command
@@ -69,7 +69,7 @@ snsinahub/sqlcmd is an action that runs script containing the languages and comm
 ### Call Script With Input
 ```YAML
 - name: sqlcmd scripts
-  uses : snsinahub/sqlcmd@v12.0.0
+  uses : snsinahub/sqlcmd@v2.0.0
   with:
     sqlcmd_action: "script"
     sql_path: 'C:\scripts\run.sql' 

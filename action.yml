@@ -52,22 +52,11 @@ runs:
 
         ## set sqlcmd variables     
         [string]$type = "${{ inputs.sqlcmd_variables_type }}"
-        echo "type $type"
-        if( $type -ne "inline" )
-        {
-          echo "inline input"
-          [string]$variables = "${{ inputs.sqlcmd_variables }}"
-          [string]$VARS = ''        
-          $VARS = $variables.split(" ")
-          $varArray = $VARS
-        }
-        else {
-          echo "external input"
-          [string]$variables = ${{ inputs.sqlcmd_variables }}
-          [string]$VARS = ''        
-          $VARS = $variables.split(" ")
-          $varArray = $(${{ inputs.sqlcmd_variables }})
-        }
+        [string]$variables = ${{ inputs.sqlcmd_variables }}
+        [string]$VARS = ''        
+        $VARS = $variables.split(" ")
+        $varArray = $(${{ inputs.sqlcmd_variables }})
+        
         
         
         

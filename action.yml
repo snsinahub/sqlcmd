@@ -59,7 +59,8 @@ runs:
         $TO = '${{ inputs.query_timeout }}'
 
         if ( $VARS -ne '' ) {
-          $PS += " -Variable $variables"
+          $PS += " -Variable " 
+          $PS += $variables
         }
         else
         {

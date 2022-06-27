@@ -75,7 +75,7 @@ runs:
             }
             else 
             {
-              $PS += ' "' + $item + '" '
+              $PS += ' "' + $item.replace('"', "'") + '" '
               $i++;
             }                  
             

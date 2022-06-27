@@ -52,6 +52,7 @@ runs:
 
         ## set sqlcmd variables     
         $type = "${{ inputs.sqlcmd_variables_type }}"
+        echo "type $type"
         if( $type == 'inline' )
         {
           [string]$variables = "${{ inputs.sqlcmd_variables }}"

@@ -51,8 +51,10 @@ runs:
         # [string[]]$VARS = @()
         [string]$VARS = ''
         $VARS = $variables -split ";" | ForEach-Object { $_.trim() }    
-        $VARS = $variables
+        $VARS = $variables.split(" ")
+        $varArray = $(${{ inputs.sqlcmd_variables }})
         echo $variables
+        echo $varArray
 
 
         ## set timeout time in seconds

@@ -52,13 +52,14 @@ runs:
         [string]$VARS = ''
         # $VARS = $variables -split ";" | ForEach-Object { $_.trim() }    
         $VARS = $variables
+        echo $variables
 
 
         ## set timeout time in seconds
         $TO = '${{ inputs.query_timeout }}'
 
         if ( $VARS -ne '' ) {
-          $PS += " -Variable $VARS"
+          $PS += " -Variable $variables"
         }
         else
         {

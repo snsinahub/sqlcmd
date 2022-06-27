@@ -61,10 +61,19 @@ runs:
         ## set timeout time in seconds
         $TO = '${{ inputs.query_timeout }}'
 
+        $i=0
         if ( $VARS -ne '' ) {
           $PS += " -Variable "           
-          foreach ($item in $varArray) {                        
-            $PS += ' "' + $item + '" '
+          foreach ($item in $varArray) {      
+            if( $i -ne 0 )
+            {
+              $PS += ' ,"' + $item + '" '
+            }
+            else 
+            {
+              $PS += ' "' + $item + '" '
+            }                  
+            
           }
         }
         else

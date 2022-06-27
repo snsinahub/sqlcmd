@@ -55,18 +55,18 @@ runs:
         $varArray = $(${{ inputs.sqlcmd_variables }})
         echo $variables
         
-        foreach ($item in $varArray) {
-          echo '-----'
-          echo $item
-        }
+        
 
 
         ## set timeout time in seconds
         $TO = '${{ inputs.query_timeout }}'
 
         if ( $VARS -ne '' ) {
-          $PS += " -Variable " 
-          $PS += ${{ inputs.sqlcmd_variables }}
+          $PS += " -Variable "           
+          foreach ($item in $varArray) {            
+            echo 
+            $PS += '"$item\"'
+          }
         }
         else
         {

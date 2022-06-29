@@ -1,4 +1,4 @@
-name: 'SQLCMD'
+name: 'SQLCMD powershell'
 description: 'An action for running Invoke-SqlCmd in Windows powershell'
 author: 'Siavash Namvar'
 branding:

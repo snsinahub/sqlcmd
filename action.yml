@@ -1,5 +1,9 @@
 name: 'action yml'
-description: 'dotnet restore'
+description: 'An action for running Invoke-SqlCmd in Windows powershell'
+author: 'Siavash Namvar'
+branding:
+  icon: database
+  color: gray-dark
 inputs:
   sql_path:  
     description: 'sql_path'

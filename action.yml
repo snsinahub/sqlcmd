@@ -1,4 +1,4 @@
-name: 'action yml'
+name: 'SQLCMD'
 description: 'An action for running Invoke-SqlCmd in Windows powershell'
 author: 'Siavash Namvar'
 branding:
